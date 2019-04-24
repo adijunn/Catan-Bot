@@ -32,9 +32,6 @@ def action(self):
                 max_score = score
 
 
-        print(best_move)
-        print(best_move[0])
-        print(self.resources)
 
         if best_move == ('n'):
             if self.resources[np.argmax(self.resources)] >= 5:
