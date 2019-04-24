@@ -1,3 +1,13 @@
+
+#This function takes as input a vertex on the board (x and y coord) and returns a list of tuples where each tuple is of the form: (resource_id, probability) (0 is wood, 1 is brick, and 2 is grain)
+#Parameters: coord --> tuple of x and y coord
+def get_neighbors(coord):
+	x_coord = coord[0]	 
+	y_coord = coord[1]
+	
+
+
+
 def calculate_value(node):
 	#node.neighbors should return a list of tuples where each tuple is of the form: (resource_id, probability) --> resource type is ant int {0, 1, 2}
 	discount_rate = 0.1
