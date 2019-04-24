@@ -31,8 +31,13 @@ def action(self):
                 best_move = victorypoint
                 max_score = score
 
+
+        print(best_move)
+        print(best_move[0])
+        print(self.resources)
+
         if best_move == ('n'):
-            if self.resources[np.argmax(self.resources)] >= 4:
+            if self.resources[np.argmax(self.resources)] >= 5:
                 rmax, rmin = np.argmax(self.resources), np.argmin(self.resources)
                 self.trade(rmax,rmin)
                 flag = True
@@ -41,13 +46,19 @@ def action(self):
         elif best_move[0] == 's':
             self.buy("settlement", best_move[1][0], best_move[1][1])
         elif best_move[0] == 'r':
+            if self.resources[np.argmax(self.resources)] >= 5:
+                rmax, rmin = np.argmax(self.resources), np.argmin(self.resources)
+                self.trade(rmax,rmin)
+                flag = True
+                continue
+
             if can_build_settlement(self):
                 return
             self.buy("road", best_move[1], best_move[2])
+
             flag = True
             max_score = 0
             best_move = ('n')
         elif best_move[0] == 'v':
             self.buy("card")
-
     return
