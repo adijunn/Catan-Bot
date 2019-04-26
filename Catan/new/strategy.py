@@ -19,15 +19,34 @@ costs = np.array([[2, 1, 1],
 def hitting_time(player, goal):
     # output of this is [w, b, g]
     expected_resources = expected_player_resources(player)
+    settlement_cost = [2, 1, 1]
+    road_cost = [1, 1, 0]
+    card_cost = [1, 2, 2]
+    city_cost = [0, 3, 3]
 
     if goal == "road":
-        g = ROAD
+        g = road_cost
     elif goal == "settlement":
-        g = SETTLEMENT
+        g = settlement_cost
     elif goal == "vp":
-        g = CARD
+        g = card_cost
 
-    return np.max(np.divide(costs[g], expected_resources))
+    individual_resource_hitting_time = [g[i] / expected_resources[i] for i in range(3)]
+    
+
+    trade_for_wood = [(4/expected_resources[i])*g[0] for i in [2, 3]]
+    trade_for_brick = [(4/expected_resources[i])*g[1] for i in [1, 3]]
+    trade_for_grain = [(4/expected_resources[i])*g[2] for i in [1, 2]]
+
+    best_trades = [min(trade_for_wood), min(trade_for_brick), min(trade_for_grain)]
+
+    for i in range(3):
+	if individual_resource_hitting_time[i] > best_trades[i]:
+		individual_resource_hitting_time[i] = best_trades[i]
+
+    hitting_time = max(individual_resource_hitting_time)
+    #return np.max(np.divide(costs[g], expected_resources))
+    return hitting_time
 
 
 def find_strategies(player, road_cap):

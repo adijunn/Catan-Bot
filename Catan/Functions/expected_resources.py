@@ -34,4 +34,9 @@ def calculate_expected_resources(board):
 # TODO write this function
 # returns a vector for the expected resource production for a player on a single turn
 def expected_player_resources(player):
-    return
+    probabilities = [1/36, 2/36, 3/36, 4/36, 5/36, 0, 5/36, 4/36, 3/36, 2/36, 1/36]
+    possible_outcomes = player.board.get_resources(player.player_id)
+    prob_vector = np.array([probabilities])
+    expected_resources_vector = np.dot(prob_vector, possible_outcomes)
+
+    return expected_resources_vector
