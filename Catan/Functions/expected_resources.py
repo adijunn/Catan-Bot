@@ -1,3 +1,5 @@
+
+# TODO: modify this so that it has all three resources SEPARATE
 def calculate_expected_resources(board):
     dice = board.dice
     resources = board.resources
@@ -28,3 +30,8 @@ def calculate_expected_resources(board):
 
     #values /= (1 - discount_rate)
     return values
+
+# TODO write this function
+# returns a vector for the expected resource production for a player on a single turn
+def expected_player_resources(player):
+    return
