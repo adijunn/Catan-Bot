@@ -101,7 +101,6 @@ class Catan:
             raise CatanException("({0},{1}) is an invalid road".format(c0, c1))
 
     def if_can_build_road(self, start, end, player_id=0):
-        print("hello")
         ##order the road vertices
         temp = max(start, end)
         v1 = min(start, end)
@@ -120,15 +119,15 @@ class Catan:
         #CORNER CASES
         if v1 == 0 or v2 == 0:
             if not (v1 + v2 == 1 or v1 + v2 == self.width+1):
-                 print("e2")
+                print("e2")
                 return False
         if v1 == self.width or v2 == self.width:
             if not (v1 + v2 == 2*self.width - 1 or v1 + v2 == 3*self.width+ 1):
-                 print("e3")
+                print("e3")
                 return False
         if v1 == (self.width + 1)*self.height or v2 == (self.width + 1)*self.height:
             if not (v1 + v2 == 2*(self.width + 1)*self.height + 1 or v1 + v2 == (self.width + 1)*(2*self.height - 1)):
-                 print("e4")
+                print("e4")
                 return False
         if v1 == self.max_vertex or v2 == self.max_vertex:
             if not (v1 + v2== 2*self.max_vertex - 1 or v1 + v2== (2 * self.max_vertex - (self.width + 1))):
